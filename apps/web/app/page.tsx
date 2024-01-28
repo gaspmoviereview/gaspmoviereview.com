@@ -9,6 +9,7 @@ import styles from "./page.module.scss";
 import { ReviewCard } from "../components/Card/ReviewCard";
 import { Footer } from "../components/Footer/Footer";
 import { GenericStructuredData } from "../components/Base/GenericStructuredData/GenericStructuredData";
+import { ContactForm } from "../components/ContactForm/ContactForm";
 
 export async function generateMetadata() {
   const data = await getPageMetadataBySlug("home");
@@ -47,6 +48,7 @@ export default async function Page(): Promise<JSX.Element> {
           ))}
         </ul>
       </div>
+      <ContactForm />
       <Footer columns={siteInfo.footerLinkColumns} />
       <GenericStructuredData page={pageData} />
     </main>
