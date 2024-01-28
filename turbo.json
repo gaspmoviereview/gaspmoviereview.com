@@ -1,6 +1,7 @@
 {
   "$schema": "https://turbo.build/schema.json",
-  "globalDependencies": ["**/.env.*local"],
+  "globalDependencies": ["**/.env.*local", "**/.env", "CMS_ACCESS_TOKEN"],
+  "globalEnv": ["CMS_ACCESS_TOKEN", "NEXT_PUBLIC_CMS_URI", "NEXT_PUBLIC_BASE_URI"],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],

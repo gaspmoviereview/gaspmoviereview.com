@@ -1,0 +1,13 @@
+@use "../styles//colors" as *;
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+}
+
+.latest-reviews-wrapper {
+  margin-top: 4rem;
+  list-style: none;
+}

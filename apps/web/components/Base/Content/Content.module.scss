@@ -1,0 +1,14 @@
+.content-wrapper {
+  padding: 0.5rem 1rem;
+  max-width: 1200px;
+  font-size: 1.2rem;
+  font-weight: 300;
+
+  p {
+    margin: 1rem 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}

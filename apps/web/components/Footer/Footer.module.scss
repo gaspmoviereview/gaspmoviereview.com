@@ -1,0 +1,44 @@
+@use "../../styles/colors" as *;
+
+.footer {
+  padding: 3rem 3rem 1rem 3rem;
+  background-color: $blue;
+}
+
+.footer-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.footer-column {
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem;
+  flex-basis: 400px;
+}
+
+.footer-links-list {
+  margin-top: 0.5rem;
+  list-style: none;
+}
+
+.footer-link-wrapper {
+  margin: 0.25rem;
+  font-weight: 300;
+}
+
+.footer-disclaimer {
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 100;
+  padding-top: 2rem;
+  text-align: center;
+  opacity: 0.7;
+  a {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,136 @@
+@use "../../styles/colors" as *;
+@use "../../styles/variables" as *;
+
+.vertical-gasp-factor,
+.horizontal-gasp-factor {
+  padding: 1.4rem 0;
+  max-width: 400px;
+  width: 100%;
+  .gasp-factor-top {
+    display: flex;
+  }
+}
+
+.vertical-gasp-factor {
+  .gasp-factor-top {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .gasp-factor-top-left {
+    text-align: center;
+    margin-right: 0;
+    order: 2;
+    margin-top: 0;
+  }
+
+  .gasp-factor-top-right {
+    background-color: transparent;
+    width: unset;
+    height: unset;
+    color: $blue;
+    font-size: 4rem;
+    margin-left: 0;
+    font-weight: 700;
+  }
+}
+
+.gasp-factor-top {
+  padding: 0 0.5rem;
+}
+
+.gasp-factor-top-left {
+  flex-grow: 1;
+  text-align: left;
+  margin-right: 1rem;
+
+  h4 {
+    font-size: 1.2rem;
+    font-family: var(--font-permanent-marker);
+  }
+
+  small {
+    font-size: 0.8rem;
+  }
+}
+
+.gasp-factor-top-right {
+  width: 30%;
+  background-color: $blue;
+  color: #fff;
+  font-family: var(--font-courier);
+  font-size: 1.4rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  width: 75px;
+  height: 75px;
+}
+
+.gasp-factor-bottom {
+  display: flex;
+  padding-top: 1.8rem;
+  position: relative;
+}
+
+.gasp-factor-factor {
+  width: 100%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 0.5rem;
+}
+
+.gasp-factor-icon {
+  margin-right: 0.5rem;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.gasp-factor-value {
+  color: $red;
+  font-family: var(--font-courier);
+  font-weight: 400;
+  font-size: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+
+  &:hover {
+    small {
+      display: block;
+    }
+  }
+
+  small {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    transform: translateY(calc(100% + 10px));
+    background-color: $blue;
+    color: #fff;
+    padding: 0.2rem 0.3rem;
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+    left: 0;
+    &:last-of-type {
+      left: unset;
+      right: 0;
+    }
+  }
+}
+
+.vertical {
+  :global {
+    .gasp-factor-top {
+      flex-direction: column;
+    }
+  }
+}
