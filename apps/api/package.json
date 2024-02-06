@@ -33,5 +33,10 @@
     "node": ">=18.0.0 <=20.x.x",
     "npm": ">=6.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.0",
+    "@types/faker": "^6.6.9",
+    "@types/node": "^20.11.16"
+  }
 }

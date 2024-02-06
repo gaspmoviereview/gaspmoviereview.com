@@ -36,7 +36,6 @@
   display: flex;
   width: 100%;
   list-style: none;
-  align-items: center;
   padding: 1rem;
   flex-direction: column;
 }
@@ -54,4 +53,32 @@
   text-transform: capitalize;
   padding: 1rem;
   display: block;
+}
+
+@media screen and (min-width: 1024px) {
+  .nav-drawer[aria-hidden="true"] {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+    max-width: unset;
+    justify-content: flex-end;
+  }
+
+  .nav-drawer-header {
+    display: none;
+  }
+
+  .nav-list {
+    flex-direction: row;
+    flex-grow: 1;
+    padding: 0;
+    justify-content: flex-end;
+  }
+
+  .nav-content {
+    max-width: unset;
+    flex-grow: 1;
+    position: static;
+  }
 }

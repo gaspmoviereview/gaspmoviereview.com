@@ -18,9 +18,10 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getReviewMetadataBySlug(params.slug);
+  console.log(data);
   return {
-    title: data.title,
-    description: data.description,
+    title: data?.title,
+    description: data?.description,
   };
 }
 
@@ -40,6 +41,7 @@ const ReviewStructuredData: React.FC<{ post: APIReviewType }> = ({ post }) => {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
   };
+  console.log(post);
   return (
     <script
       type="application/ld+json"
@@ -53,20 +55,21 @@ export default async function Page({
 }: {
   params: { slug: string };
 }): Promise<JSX.Element> {
-  console.log(params.slug);
-
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug("reviews");
   const review = await getReviewBySlug(params.slug);
 
+  console.log(pageData);
+  console.log(review);
+
   const published = Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",
     timeStyle: "short",
-  }).format(new Date(review.publishedAt));
+  }).format(new Date(review?.publishedAt || ""));
   const updated = Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",
     timeStyle: "short",
-  }).format(new Date(review.updatedAt));
+  }).format(new Date(review?.updatedAt || ""));
 
   return (
     <main>
@@ -102,7 +105,10 @@ export default async function Page({
           <div className={styles["author-left"]}>
             <div className={styles["author-image-wrapper"]}>
               <Image
-                src={`${process.env.NEXT_PUBLIC_CMS_URI}${review.author.featuredImage.formats.thumbnail.url}`}
+                src={`${process.env.NEXT_PUBLIC_CMS_URI}${
+                  review.author.featuredImage.formats?.thumbnail?.url ||
+                  review.author.featuredImage.url
+                }`}
                 alt={
                   review.author.featuredImage.alternativeText ||
                   review.author.featuredImage.caption ||
@@ -142,7 +148,7 @@ export default async function Page({
                     key={`review-page-${genre.id}`}
                     className={styles["genre-wrapper"]}
                   >
-                    <Link href={genre.slug} title={genre.title}>
+                    <Link href={`/genre/${genre.slug}`} title={genre.title}>
                       {genre.title}
                     </Link>
                   </li>

@@ -14,8 +14,8 @@ import { ContactForm } from "../components/ContactForm/ContactForm";
 export async function generateMetadata() {
   const data = await getPageMetadataBySlug("home");
   return {
-    title: data.title,
-    description: data.description,
+    title: data?.title,
+    description: data?.description,
   };
 }
 
@@ -23,6 +23,8 @@ export default async function Page(): Promise<JSX.Element> {
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug("home");
   const reviews = await getLatestReviewCards();
+
+  console.log(pageData);
 
   return (
     <main>
@@ -42,7 +44,10 @@ export default async function Page(): Promise<JSX.Element> {
         <Content content={pageData.content} />
         <ul className={styles["latest-reviews-wrapper"]}>
           {reviews.map((review) => (
-            <li key={`hp-review-card-${review.id}`}>
+            <li
+              className={styles["latest-review"]}
+              key={`hp-review-card-${review.id}`}
+            >
               <ReviewCard review={review} />
             </li>
           ))}

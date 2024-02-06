@@ -1,0 +1,62 @@
+@use "../../../styles/colors" as *;
+@use "../../../styles/variables" as *;
+
+.header {
+  margin-top: $nav-height;
+  text-align: center;
+  padding: 2rem;
+}
+
+.header-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    font-family: var(--font-permanent-marker);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  span {
+    font-family: var(--font-courier);
+  }
+
+  &::after {
+    width: 150px;
+    height: 3px;
+    border-radius: 3px;
+    background-color: $red;
+    display: block;
+    content: "";
+    margin: 1rem auto;
+  }
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem;
+}
+
+.latest-reviews-wrapper {
+  margin: 4rem auto 0 auto;
+  list-style: none;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  grid-gap: 3rem;
+  justify-content: center;
+}
+
+.latest-review {
+  margin: 0;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
+}

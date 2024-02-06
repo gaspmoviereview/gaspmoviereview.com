@@ -1,0 +1,60 @@
+@use "../../styles//colors" as *;
+
+.contact-wrapper {
+  max-width: 900px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.contact-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  font-size: 1.2rem;
+  position: relative;
+
+  label {
+    margin-bottom: 0.5rem;
+  }
+
+  textarea,
+  input {
+    font-size: 1.2rem;
+    padding: 0.8rem;
+    border: 2px solid $blue;
+    border-radius: 8px;
+
+    &[type="submit"] {
+      background-color: $blue;
+      color: #fff;
+    }
+
+    &[data-error="true"] {
+      border-color: $red;
+
+      + .error-notice {
+        display: block;
+      }
+    }
+  }
+
+  .error-notice {
+    background-color: $red;
+    display: inline-flex;
+    margin: 0 auto;
+    padding: 0.15rem 0.5rem 0.5rem 0.5rem;
+    border-radius: 0 0 8px 8px;
+    color: #fff;
+    line-height: 1;
+    font-weight: 200;
+    font-size: 1rem;
+    position: absolute;
+    bottom: 0;
+    transform: translate(-50%, 100%);
+    left: 50%;
+    display: none;
+  }
+}
