@@ -50,12 +50,18 @@
 
 .gasp-factor-top {
   padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .gasp-factor-top-left {
   flex-grow: 1;
-  text-align: left;
-  margin-right: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 
   h4 {
     font-size: 1.2rem;
@@ -69,17 +75,14 @@
 
 .gasp-factor-top-right {
   width: 30%;
-  background-color: $blue;
-  color: #fff;
+  color: $blue;
   font-family: var(--font-courier);
-  font-size: 1.4rem;
+  font-size: 2rem;
+  font-weight: bold;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5rem;
-  margin-left: 1rem;
-  width: 75px;
-  height: 75px;
+  padding: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .gasp-factor-bottom {

@@ -1,7 +1,16 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalDependencies": ["**/.env.*local", "**/.env", "CMS_ACCESS_TOKEN"],
-  "globalEnv": ["CMS_ACCESS_TOKEN", "NEXT_PUBLIC_CMS_URI", "NEXT_PUBLIC_BASE_URI"],
+  "globalEnv": [
+    "CMS_ACCESS_TOKEN",
+    "NEXT_PUBLIC_CMS_URI",
+    "NEXT_PUBLIC_BASE_URI",
+    "MAILER_HOST",
+    "MAILER_PORT",
+    "MAILER_USER",
+    "MAILER_PASS",
+    "MAILER_RECEIVER"
+  ],
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
