@@ -9,12 +9,12 @@ import styles from "./page.module.scss";
 import { ReviewCard } from "../components/Card/ReviewCard";
 import { Footer } from "../components/Footer/Footer";
 import { GenericStructuredData } from "../components/Base/GenericStructuredData/GenericStructuredData";
-import { ContactForm } from "../components/ContactForm/ContactForm";
+import { Metadata } from "next";
 
-export async function generateMetadata() {
+export async function generateMetadata(): Promise<Metadata> {
   const data = await getPageMetadataBySlug("home");
   return {
-    title: data?.title,
+    title: `Home`,
     description: data?.description,
   };
 }
@@ -23,8 +23,6 @@ export default async function Page(): Promise<JSX.Element> {
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug("home");
   const reviews = await getLatestReviewCards();
-
-  console.log(pageData);
 
   return (
     <main>
@@ -43,7 +41,7 @@ export default async function Page(): Promise<JSX.Element> {
       <div className={styles.content}>
         <Content content={pageData.content} />
         <ul className={styles["latest-reviews-wrapper"]}>
-          {reviews.map((review) => (
+          {reviews.data.map((review) => (
             <li
               className={styles["latest-review"]}
               key={`hp-review-card-${review.id}`}
@@ -53,7 +51,6 @@ export default async function Page(): Promise<JSX.Element> {
           ))}
         </ul>
       </div>
-      <ContactForm />
       <Footer columns={siteInfo.footerLinkColumns} />
       <GenericStructuredData page={pageData} />
     </main>

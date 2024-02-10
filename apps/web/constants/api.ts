@@ -16,8 +16,7 @@ export const REVIEW_QUERY_PARAMS =
 export const REVIEW_CARD_QUERY_PARAMS =
   "fields[0]=title&fields[1]=description&fields[3]=publishedAt&fields[5]=slug&populate[genre]=*&populate[featuredImage]=*&populate[gaspFactor]=*";
 
-export const GENRE_QUERY_PARAMS =
-  "fields[0]=title&fields[1]=slug&populate[reviews][fields][0]=title&populate[reviews][fields][1]=description&populate[reviews][fields][2]=slug&populate[reviews][fields][3]=publishedAt&populate[reviews][populate][featuredImage]=*&populate[reviews][populate][gaspFactor]=*";
+export const GENRE_QUERY_PARAMS = "fields[0]=title&fields[1]=slug";
 
 export const CMS_FETCH_OPTIONS = {
   method: "GET",

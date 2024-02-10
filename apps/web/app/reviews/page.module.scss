@@ -2,7 +2,7 @@
 @use "../../styles/variables" as *;
 
 .header {
-  margin-top: $nav-height;
+  margin-top: calc($nav-height + 2rem);
   text-align: center;
   padding: 2rem;
 }
@@ -11,11 +11,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 600px;
+  margin: auto;
 
   h1 {
     font-family: var(--font-permanent-marker);
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+
+    span {
+      font-size: 1rem;
+      display: block;
+    }
   }
 
   span {
@@ -33,14 +40,30 @@
   }
 }
 
-.latest-reviews-wrapper {
-  margin-top: 4rem;
-  list-style: none;
-}
-
 .content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 0 3rem 3rem 3rem;
+  padding: 1rem 3rem 3rem;
+}
+
+.latest-reviews-wrapper {
+  margin: 2rem auto 0 auto;
+  list-style: none;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 350px));
+  grid-gap: 3rem;
+  justify-content: center;
+}
+
+.latest-review {
+  margin: 0;
+
+  &:first-of-type {
+    margin-top: 0;
+  }
+  &:last-of-type {
+    margin-bottom: 0;
+  }
 }

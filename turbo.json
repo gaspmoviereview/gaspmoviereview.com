@@ -9,7 +9,8 @@
     "MAILER_PORT",
     "MAILER_USER",
     "MAILER_PASS",
-    "MAILER_RECEIVER"
+    "MAILER_RECEIVER",
+    "NEXT_PUBLIC_URL"
   ],
   "pipeline": {
     "build": {

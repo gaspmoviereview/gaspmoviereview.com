@@ -1,4 +1,3 @@
-import { Content } from "../../components/Base/Content/Content";
 import { Nav } from "../../components/Nav/Nav";
 import { getLatestReviewCards } from "../../services/api/getLatestReviewCards";
 import { getPageBySlug } from "../../services/api/getPageBySlug";
@@ -7,13 +6,13 @@ import { getSiteInfo } from "../../services/api/getSiteInfo";
 import styles from "./page.module.scss";
 import { ReviewCard } from "../../components/Card/ReviewCard";
 import { Footer } from "../../components/Footer/Footer";
-import { GenericStructuredData } from "../../components/Base/GenericStructuredData/GenericStructuredData";
+import { Pagination } from "../../components/Pagination/Pagination";
 
 export async function generateMetadata() {
   const data = await getPageMetadataBySlug("reviews");
   return {
-    title: data.title,
-    description: data.description,
+    title: data?.title,
+    description: data?.description,
   };
 }
 
@@ -22,12 +21,19 @@ export default async function Page({
   searchParams,
 }: {
   params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: { page: number };
 }): Promise<JSX.Element> {
   const page = searchParams?.page ? Number(searchParams?.page) : 1;
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug("reviews");
-  const reviews = await getLatestReviewCards(page);
+  const { data: reviews, meta } = await getLatestReviewCards(page);
+
+  const firstPostOnPage =
+    meta?.pagination.page && meta?.pagination.page > 1
+      ? (meta?.pagination.page - 1) * 6
+      : 0;
+
+  const lastPostOnPage = firstPostOnPage + reviews.length;
 
   return (
     <main>
@@ -37,12 +43,17 @@ export default async function Page({
       />
       <header className={styles["header"]}>
         <div className={styles["header-content"]}>
-          <h1>{pageData.title}</h1>
-          <span>{pageData.description}</span>
+          <h1>
+            Reviews <span>(Page {searchParams?.page || "1"})</span>
+          </h1>
+          <span>
+            Currently displaying posts{" "}
+            {firstPostOnPage === 0 ? 1 : firstPostOnPage} to {lastPostOnPage}{" "}
+            from all genres. There are a total of {meta.pagination.total} posts.
+          </span>
         </div>
       </header>
       <div className={styles.content}>
-        <Content content={pageData.content} />
         <ul className={styles["latest-reviews-wrapper"]}>
           {reviews.map((review) => (
             <li key={`plp-review-card-${review.id}`}>
@@ -51,8 +62,19 @@ export default async function Page({
           ))}
         </ul>
       </div>
+      <Pagination
+        links={Array(meta.pagination.pageCount)
+          .fill(null)
+          .map((_, i) => ({
+            href: `/reviews?page=${1 + i}`,
+            isActive: !(
+              Number(searchParams?.page) === 1 + i ||
+              (!searchParams?.page && i === 0)
+            ),
+            label: `${i + 1}`,
+          }))}
+      />
       <Footer columns={siteInfo.footerLinkColumns} />
-      <GenericStructuredData page={pageData} />
     </main>
   );
 }

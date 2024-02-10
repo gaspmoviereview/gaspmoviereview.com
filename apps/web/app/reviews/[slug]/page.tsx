@@ -18,9 +18,8 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getReviewMetadataBySlug(params.slug);
-  console.log(data);
   return {
-    title: data?.title,
+    title: `Review of ${data?.title}`,
     description: data?.description,
   };
 }
@@ -41,7 +40,7 @@ const ReviewStructuredData: React.FC<{ post: APIReviewType }> = ({ post }) => {
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
   };
-  console.log(post);
+
   return (
     <script
       type="application/ld+json"
@@ -56,11 +55,7 @@ export default async function Page({
   params: { slug: string };
 }): Promise<JSX.Element> {
   const siteInfo = await getSiteInfo();
-  const pageData = await getPageBySlug("reviews");
   const review = await getReviewBySlug(params.slug);
-
-  console.log(pageData);
-  console.log(review);
 
   const published = Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",

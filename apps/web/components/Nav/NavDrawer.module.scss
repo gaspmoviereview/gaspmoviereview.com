@@ -49,16 +49,20 @@
 
 .nav-link {
   font-size: 1.2rem;
-  font-weight: 700;
+  font-weight: 300;
   text-transform: capitalize;
   padding: 1rem;
   display: block;
 }
 
 @media screen and (min-width: 1024px) {
-  .nav-drawer[aria-hidden="true"] {
-    position: static;
+  .nav-drawer {
     display: flex;
+  }
+
+  .nav-drawer[aria-hidden="true"] {
+    display: inherit;
+    position: static;
     flex-direction: row;
     background-color: transparent;
     max-width: unset;
@@ -72,13 +76,15 @@
   .nav-list {
     flex-direction: row;
     flex-grow: 1;
-    padding: 0;
+    padding: 0 2rem;
     justify-content: flex-end;
+    margin: auto;
   }
 
   .nav-content {
     max-width: unset;
     flex-grow: 1;
     position: static;
+    display: flex;
   }
 }

@@ -46,9 +46,9 @@ export const POST = async (request: Request) => {
   const plainTextMessage = `Name: ${name}\nEmail: ${email}\nSubject: ${subject}\n\n${content}`;
   const htmlMessage = `<p>Name: ${name}</p><p>Email: ${email}</p><p>Subject: ${subject}</p><p>${content}</p>`;
   const sendObject = {
-    from: `"${name}" <${email}>`, // sender address
+    from: `"Gasp Movie Review" <${process.env.MAILER_USER}>`, // sender address
     to: process.env.MAILER_RECEIVER, // list of receivers
-    subject: "Message from GaspMovieReview Contact Form", // Subject line
+    subject: `Message from ${name} about ${subject}`, // Subject line
     text: plainTextMessage,
     html: htmlMessage,
   };

@@ -6,6 +6,7 @@ import { getSiteInfo } from "../../services/api/getSiteInfo";
 import styles from "./page.module.scss";
 import { Footer } from "../../components/Footer/Footer";
 import { GenericStructuredData } from "../../components/Base/GenericStructuredData/GenericStructuredData";
+import { ContactForm } from "../../components/ContactForm/ContactForm";
 
 export async function generateMetadata({
   params,
@@ -13,7 +14,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getPageMetadataBySlug(params.slug);
-  console;
+
   return {
     title: data.title,
     description: data.description,
@@ -43,7 +44,11 @@ export default async function Page({
       <div className={styles.content}>
         <Content content={pageData.content} />
       </div>
-      <div className={styles["contact-wrapper"]}></div>
+      {pageData.isContact ? (
+        <div className={styles["contact-wrapper"]}>
+          <ContactForm />
+        </div>
+      ) : null}
       <Footer columns={siteInfo.footerLinkColumns} />
       <GenericStructuredData page={pageData} />
     </main>

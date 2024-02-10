@@ -19,7 +19,6 @@ const HomePageHeader: React.FC<HomePageHeaderProps> = ({
   cta,
   title,
 }) => {
-  console.log(backgroundImage);
   return (
     <header className={styles["home-header-wrapper"]}>
       <Image

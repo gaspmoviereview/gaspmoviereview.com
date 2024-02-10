@@ -28,10 +28,9 @@ const Nav: React.FC<NavProps> = ({ testId, id, style, links, logo }) => {
           <Link href={"/"} title="Back to home">
             <Image
               style={{ objectFit: "contain" }}
-              width={100}
-              height={40}
               alt={logo?.name}
               src={`${process.env.NEXT_PUBLIC_CMS_URI}${logo?.url}`}
+              fill
             />
           </Link>
         </div>

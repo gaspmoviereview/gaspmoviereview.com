@@ -118,3 +118,12 @@ export type APIPageMetadataType = Pick<
   APIPageType,
   "description" | "title" | "slug"
 >;
+
+export type APIMetaDataType = {
+  pagination: {
+    page: number;
+    pageSize: number;
+    pageCount: number;
+    total: number;
+  };
+};
