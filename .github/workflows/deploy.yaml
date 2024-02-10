@@ -19,12 +19,5 @@ jobs:
         cp -R apps/api/dist ../build
         tar -cvf deploy.tar ../build/
     - name: Copy to server
-      uses: appleboy/scp-action@master
-      with: 
-        host: ${{ secrets.API_HOST }}
-        username: ${{ secrets.API_USERNAME }}
-        port: ${{ secrets.API_PORT }}
-        password: ${{ secrets.API_PASSWORD }}
-        source: deploy.tar
-        target: /deploy.tar
+      run: sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
         
