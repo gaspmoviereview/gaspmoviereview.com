@@ -19,5 +19,8 @@ jobs:
         cp -R apps/api/dist ../build
         tar -cvf deploy.tar ../build/
     - name: Copy to server
-      run: sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
+      run: |
+      ssh-keygen -R ${{ secrets.API_HOST }} 
+      ssh-keygen -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
+      sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
         
