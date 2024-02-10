@@ -26,5 +26,5 @@ jobs:
         port: ${{ secrets.API_PORT }}
         password: ${{ secrets.API_PASSWORD }}
         source: deploy.tar
-        target: /tmp/
+        target: /deploy.tar
         
