@@ -10,14 +10,15 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install deps
-        run: yarn install --frozen-lock-file
+        run: yarn install --frozen-lock-file --silent
       - name: Build API
-        run: yarn build --filter=api
+        run: yarn build --filter=api --silent
       - name: Bundle the build
         run: |
           mkdir ../build
           cp -R apps/api/dist ../build
           cd ../build
+          touch deploy.tar.gz
           tar -czvf deploy.tar.gz .
       - name: Copy to server
         run: |
