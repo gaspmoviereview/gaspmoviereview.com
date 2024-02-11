@@ -22,6 +22,6 @@ jobs:
           touch ~/.ssh/known_hosts
       - name: Copy to server
         run: >
-          ssh-keygen -R ${{ secrets.API_HOST }} 
-          ssh-keygen -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
+          ssh-keyscan -R ${{ secrets.API_HOST }} 
+          ssh-keyscan -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
