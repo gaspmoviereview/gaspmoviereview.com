@@ -24,7 +24,9 @@ jobs:
           touch ~/.ssh/known_hosts
           touch ~/.ssh/id_key
           echo "$SSH" >> ~/.ssh/id_key
+          chmod 400 ~/.ssh/id_key
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_key
           ssh-keyscan -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
+          
