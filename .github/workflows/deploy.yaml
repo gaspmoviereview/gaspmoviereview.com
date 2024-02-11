@@ -21,6 +21,6 @@ jobs:
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
       - name: Copy to server
-        run: >
+        run: |
           ssh-keyscan -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
