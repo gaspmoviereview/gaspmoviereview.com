@@ -1,26 +1,25 @@
+---
 name: Deploy API
-
 on:
-  push: 
+  push:
     branches:
       - main
 jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v4
-    - name: Install deps
-      run: yarn install --frozen-lock-file 
-    - name: Build API
-      run: yarn build --filter=api
-    - name: Bundle the build
-      run: |
-        mkdir ../build
-        cp -R apps/api/dist ../build
-        tar -cvf deploy.tar ../build/
-    - name: Copy to server
-      run: |
-      ssh-keygen -R ${{ secrets.API_HOST }} 
-      ssh-keygen -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
-      sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
-        
+      - uses: actions/checkout@v4
+      - name: Install deps
+        run: yarn install --frozen-lock-file
+      - name: Build API
+        run: yarn build --filter=api
+      - name: Bundle the build
+        run: |
+          mkdir ../build
+          cp -R apps/api/dist ../build
+          tar -cvf deploy.tar ../build/
+      - name: Copy to server
+        run: >
+          ssh-keygen -R ${{ secrets.API_HOST }} 
+          ssh-keygen -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
+          sshpass -p "${{ secrets.API_PASSWORD }}" scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
