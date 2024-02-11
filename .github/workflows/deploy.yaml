@@ -12,7 +12,7 @@ jobs:
       - name: Install deps
         run: yarn install --frozen-lock-file --silent
       - name: Build API
-        run: yarn build --filter=api --silent
+        run: yarn build --filter=api
       - name: Bundle the build
         run: |
           mkdir ../build
