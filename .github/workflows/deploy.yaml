@@ -17,7 +17,8 @@ jobs:
         run: |
           mkdir ../build
           cp -R apps/api/dist ../build
-          tar -cvf deploy.tar.gz ../build/
+          cd ../build
+          tar -czvf deploy.tar.gz .
       - name: Copy to server
         run: |
           mkdir ~/.ssh
@@ -31,7 +32,8 @@ jobs:
           scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST
           }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
-            tar -xvzf /tmp/deploy.tar.gz /tmp/dist/
+            mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments
+            tar -xvzf /var/www/api.gaspmoviereview.com/deployments
           "
         
 
