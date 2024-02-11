@@ -18,7 +18,7 @@ jobs:
           mkdir ../build
           cp -R apps/api/dist ../build
           tar -cvf deploy.tar ../build/
-          mkdir ~/.SSH
+          mkdir ~/.ssh
           touch ~/.ssh/known_hosts
       - name: Copy to server
         run: >
