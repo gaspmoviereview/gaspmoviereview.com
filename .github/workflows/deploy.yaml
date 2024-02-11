@@ -17,7 +17,7 @@ jobs:
         run: |
           mkdir ../build
           cp -R apps/api/dist ../build
-          tar -cvf deploy.tar ../build/
+          tar -cvf deploy.tar.gz ../build/
       - name: Copy to server
         run: |
           mkdir ~/.ssh
@@ -28,6 +28,11 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_key
           ssh-keyscan -t ed25519 ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
-          scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
+          scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST
+          }}:/tmp
+          ssh aumni@contabo "
+            tar -xvzf /tmp/deploy.tar.gz /tmp/dist/
+          "
+        
 
           
