@@ -20,8 +20,6 @@ jobs:
           cd ../build
           touch deploy.tar.gz
           tar -czvf deploy.tar.gz .
-      - name: Copy to server
-        run: |
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
           touch ~/.ssh/id_key
