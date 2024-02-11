@@ -18,6 +18,8 @@ jobs:
           mkdir ../build
           cp -R apps/api/dist ../build
           tar -cvf deploy.tar ../build/
+          mkdir ~/.SSH
+          touch ~/.ssh/known_hosts
       - name: Copy to server
         run: >
           ssh-keygen -R ${{ secrets.API_HOST }} 
