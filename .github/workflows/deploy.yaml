@@ -27,7 +27,7 @@ jobs:
           chmod 400 ~/.ssh/id_key
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_key
-          ssh-keyscan -t rsa ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
+          ssh-keyscan -t ed25519 ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           scp deploy.tar ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
 
           
