@@ -9,19 +9,13 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v4
-      - name: Install deps
-        run: yarn install --frozen-lock-file --silent
-      - name: Build API
-        run: yarn build --filter=api
       - name: Bundle the build
         run: |
           mkdir ../build
-          cp -R apps/api/dist ../build
-          cp package.json ../build
-          cp yarn.lock ../build
-          cp -R node_modules ../build
+          cp -R apps/api ../build
           cd ../build
           touch deploy.tar.gz
+          echo "Bundling spi repo"
           tar -czf deploy.tar.gz .
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
@@ -33,12 +27,19 @@ jobs:
           ssh-keyscan -t ed25519 ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
+            echo making deployment "${{ github.sha }}"
             mkdir /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             cd /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
+            echo "Extracting tarball"
             tar -xzf deploy.tar.gz
+            rm -rf deploy.tar.gz
+            yarn install --frozen-lockfile
+            yarn build
+            echo "Exiting server"
             exit
           "
+          echo "Removing key"
           rm -rf ~/.ssh/id_key
         
 
