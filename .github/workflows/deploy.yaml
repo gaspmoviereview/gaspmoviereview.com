@@ -31,13 +31,14 @@ jobs:
           eval "$(ssh-agent -s)"
           ssh-add ~/.ssh/id_key
           ssh-keyscan -t ed25519 ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
-          scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST
-          }}:/tmp
+          scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
             mkdir /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             tar -xvzf /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}/deploy.tar.gz
+            exit
           "
+          rm -rf ~/.ssh/id_key
         
 
           
