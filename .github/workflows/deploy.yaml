@@ -32,8 +32,9 @@ jobs:
           }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments
+            mkdir /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             tar -xvzf /var/www/api.gaspmoviereview.com/deployments/deploy.tar.gz
-            /var/www/api.gaspmoviewreview.com/deployments/1
+            /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
           "
         
 
