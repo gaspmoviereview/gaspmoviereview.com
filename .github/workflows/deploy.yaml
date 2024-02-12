@@ -17,6 +17,9 @@ jobs:
         run: |
           mkdir ../build
           cp -R apps/api/dist ../build
+          cp package.json ../build
+          cp yarn.lock ../build
+          cp node_modules ../build
           cd ../build
           touch deploy.tar.gz
           tar -czvf deploy.tar.gz .
