@@ -22,7 +22,7 @@ jobs:
           cp -R node_modules ../build
           cd ../build
           touch deploy.tar.gz
-          tar -czvf deploy.tar.gz .
+          tar -czf deploy.tar.gz .
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
           touch ~/.ssh/id_key
@@ -35,7 +35,7 @@ jobs:
           ssh aumni@${{ secrets.API_HOST }} "
             mkdir /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
-            tar -xvzf /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}/deploy.tar.gz
+            tar -xzf /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}/deploy.tar.gz
             exit
           "
           rm -rf ~/.ssh/id_key
