@@ -37,6 +37,7 @@ jobs:
             rm -rf deploy.tar.gz
             yarn install --frozen-lockfile
             yarn build
+            cp ../.env ./.env
             echo "Exiting server"
             exit
 
