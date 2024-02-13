@@ -16,7 +16,7 @@ jobs:
           cd ../build
           touch deploy.tar.gz
           echo "Bundling spi repo"
-          tar -czf deploy.tar.gz .
+          tar -C api -czf deploy.tar.gz .
           mkdir ~/.ssh
           touch ~/.ssh/known_hosts
           touch ~/.ssh/id_key
@@ -28,7 +28,7 @@ jobs:
           scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
             echo making deployment "${{ github.sha }}"
-            mkdir /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
+            mkdir -p /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             cd /var/www/api.gaspmoviereview.com/deployments/${{ github.sha }}
             echo "Extracting tarball"
