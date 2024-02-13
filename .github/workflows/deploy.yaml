@@ -30,9 +30,9 @@ jobs:
             
             folder = echo "${{ github.sha }}" | cut -c1-8
             echo making deployment "${{ github.sha }}"
-            mkdir -p /var/www/api.gaspmoviereview.com/deployments/$folder
-            mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/$folder
-            cd /var/www/api.gaspmoviereview.com/deployments/$folder
+            mkdir -p /var/www/api.gaspmoviereview.com/deployments/${folder}
+            mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/${folder}
+            cd /var/www/api.gaspmoviereview.com/deployments/${folder}
             echo "Extracting tarball"
             tar -xzf deploy.tar.gz
             rm -rf deploy.tar.gz
