@@ -28,11 +28,11 @@ jobs:
           scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} "
             
-            folder = echo "${{ github.sha }}" | cut -c1-8
-            echo making deployment "${folder}"
-            mkdir -p "/var/www/api.gaspmoviereview.com/deployments/${folder}"
-            mv /tmp/deploy.tar.gz "/var/www/api.gaspmoviereview.com/deployments/${folder}"
-            cd "/var/www/api.gaspmoviereview.com/deployments/${folder}"
+            folder = "${${{ github.sha }}:0:8}"
+            echo making deployment "$folder"
+            mkdir -p "/var/www/api.gaspmoviereview.com/deployments/$folder"
+            mv /tmp/deploy.tar.gz "/var/www/api.gaspmoviereview.com/deployments/$folder"
+            cd "/var/www/api.gaspmoviereview.com/deployments/$folder"
             echo "Extracting tarball"
             tar -xzf deploy.tar.gz
             rm -rf deploy.tar.gz
