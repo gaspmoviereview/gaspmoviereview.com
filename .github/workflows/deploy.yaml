@@ -27,7 +27,7 @@ jobs:
           ssh-keyscan -t ed25519 ${{ secrets.API_HOST }}  >> ~/.ssh/known_hosts
           scp deploy.tar.gz ${{ secrets.API_USERNAME }}@${{ secrets.API_HOST }}:/tmp
           ssh aumni@${{ secrets.API_HOST }} '
-          
+
             echo making deployment $(echo "${{ github.sha }}" | cut -c1-8)
             mkdir -p /var/www/api.gaspmoviereview.com/deployments/$(echo "${{ github.sha }}" | cut -c1-8)
             mv /tmp/deploy.tar.gz /var/www/api.gaspmoviereview.com/deployments/$(echo "${{ github.sha }}" | cut -c1-8)
@@ -38,12 +38,10 @@ jobs:
             yarn install --frozen-lockfile
             yarn build
             cp ../.env ./.env
+            
             echo "Exiting server"
             exit
 
           '
           echo "Removing key"
           rm -rf ~/.ssh/id_key
-        
-
-          
