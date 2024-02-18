@@ -7,6 +7,7 @@ import styles from "./page.module.scss";
 import { Footer } from "../../components/Footer/Footer";
 import { GenericStructuredData } from "../../components/Base/GenericStructuredData/GenericStructuredData";
 import { ContactForm } from "../../components/ContactForm/ContactForm";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -14,6 +15,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getPageMetadataBySlug(params.slug);
+  if (!data) return notFound();
 
   return {
     title: data.title,

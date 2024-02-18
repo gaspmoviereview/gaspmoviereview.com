@@ -6,6 +6,7 @@ import { getGenreBySlug } from "../../../services/api/getGenreBySlug";
 import { ReviewCard } from "../../../components/Card/ReviewCard";
 import { getReviewsByGenre } from "../../../services/api/getReviewsByGenre";
 import { Pagination } from "../../../components/Pagination/Pagination";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -15,6 +16,7 @@ export async function generateMetadata({
   searchParams?: { page?: number };
 }) {
   const genreData = await getGenreBySlug(`${params.genre[0]}`);
+  if (!genreData) return notFound();
 
   return {
     title: `${genreData?.title} Reviews | Page ${searchParams?.page || 1}`,

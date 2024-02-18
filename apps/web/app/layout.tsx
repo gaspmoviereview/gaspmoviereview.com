@@ -3,11 +3,14 @@ import type { Metadata } from "next";
 import { Inria_Sans } from "next/font/google";
 import { Fonts } from "./fonts";
 import { getSiteInfo } from "../services/api/getSiteInfo";
+import { notFound } from "next/navigation";
 
 const inria = Inria_Sans({ subsets: ["latin"], weight: ["400", "300", "700"] });
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const siteInfo = await getSiteInfo();
+
+  if (!siteInfo) return notFound();
 
   return {
     title: {

@@ -7,9 +7,12 @@ import styles from "./page.module.scss";
 import { ReviewCard } from "../../components/Card/ReviewCard";
 import { Footer } from "../../components/Footer/Footer";
 import { Pagination } from "../../components/Pagination/Pagination";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata() {
   const data = await getPageMetadataBySlug("reviews");
+  if (!data) return notFound();
+
   return {
     title: data?.title,
     description: data?.description,

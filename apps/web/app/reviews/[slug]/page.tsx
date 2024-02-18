@@ -11,6 +11,7 @@ import { Footer } from "../../../components/Footer/Footer";
 import { getReviewMetadataBySlug } from "../../../services/api/getReviewMetadataBySlug";
 import { BlogPosting, WithContext } from "schema-dts";
 import { APIReviewType } from "../../../types/api";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata({
   params,
@@ -18,6 +19,7 @@ export async function generateMetadata({
   params: { slug: string };
 }) {
   const data = await getReviewMetadataBySlug(params.slug);
+  if (!data) return notFound();
   return {
     title: `Review of ${data?.title}`,
     description: data?.description,
