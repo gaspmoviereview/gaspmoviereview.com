@@ -59,6 +59,8 @@ export default async function Page({
   const siteInfo = await getSiteInfo();
   const review = await getReviewBySlug(params.slug);
 
+  if (!siteInfo || !review) return notFound();
+
   const published = Intl.DateTimeFormat("en-GB", {
     dateStyle: "medium",
     timeStyle: "short",

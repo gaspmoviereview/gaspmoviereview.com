@@ -28,8 +28,10 @@ export default async function Page({
 }): Promise<JSX.Element> {
   const page = searchParams?.page ? Number(searchParams?.page) : 1;
   const siteInfo = await getSiteInfo();
-  const pageData = await getPageBySlug("reviews");
+
   const { data: reviews, meta } = await getLatestReviewCards(page);
+
+  if (!siteInfo || !reviews) return notFound();
 
   const firstPostOnPage =
     meta?.pagination.page && meta?.pagination.page > 1

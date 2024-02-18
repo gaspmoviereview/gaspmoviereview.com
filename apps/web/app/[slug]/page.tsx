@@ -31,6 +31,8 @@ export default async function Page({
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug(params?.slug);
 
+  if (!siteInfo || !pageData) return notFound();
+
   return (
     <main>
       <Nav

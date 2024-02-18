@@ -39,6 +39,9 @@ export default async function Page({
     `${params.genre[0]}`,
     searchParams?.page
   );
+
+  if (!siteInfo || !genreData || !reviews) return notFound();
+
   const firstPostOnPage =
     meta?.pagination.page && meta?.pagination.page > 1
       ? (meta?.pagination.page - 1) * 6

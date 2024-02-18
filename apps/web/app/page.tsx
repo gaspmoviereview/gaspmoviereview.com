@@ -10,9 +10,13 @@ import { ReviewCard } from "../components/Card/ReviewCard";
 import { Footer } from "../components/Footer/Footer";
 import { GenericStructuredData } from "../components/Base/GenericStructuredData/GenericStructuredData";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPageMetadataBySlug("home");
+
+  if (!data) return notFound();
+
   return {
     title: `Home`,
     description: data?.description,
@@ -23,6 +27,8 @@ export default async function Page(): Promise<JSX.Element> {
   const siteInfo = await getSiteInfo();
   const pageData = await getPageBySlug("home");
   const reviews = await getLatestReviewCards();
+
+  if (!siteInfo || !pageData || !reviews) return notFound();
 
   return (
     <main>
