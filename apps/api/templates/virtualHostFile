@@ -22,7 +22,7 @@ server {
 
     # Proxy Config
     location / {
-        proxy_pass http://strapi;
+        proxy_pass http://{{HASH}};
         proxy_http_version 1.1;
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Server $host;

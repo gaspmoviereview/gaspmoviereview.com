@@ -1,22 +1,18 @@
+import argparse
 import re
 import os
 import sys
 
-## Check if the hash wass passed to the script
-try: 
-    domain = sys.argv[1]
-except:
-    ## Hash is not defined so exit
-    print("Domain (arg 1) is not defined, exiting")
-    exit(1)
 
-## Check if the hash wass passed to the script
-try: 
-    output = sys.argv[2]
-except:
-    ## Hash is not defined so exit
-    print("Output path (arg 2) is not defined, exiting")
-    exit(1)
+## Setup an arg parser
+arg_parser = argparse.ArgumentParser()
+
+## Tell arg parser what we want args for
+arg_parser.add_argument("--domain", help="The domain on which this will be deployed", required=True, type=str)
+arg_parser.add_argument("--sites-enabled", help="The path to the sites-enabled folder on the remote server", default="/etc/nginx/sites-enabled", required=False, type=str)
+arg_parser.add_argument("--sites-available", help="The path to the sites-available folder on the remote server", default="/etc/nginx/sites-available", required=False, type=str)
+
+args = arg_parser.parse_args()
 
 ## Ensure the filepath was passed
 try: 
@@ -28,6 +24,7 @@ except:
     print("Could not load the virtual host template file")
     exit(1)
 
+print(f"Making virtual host file with the domain {args.domain}")
 
 ## Open the source file
 with open(resolved_path, "rb") as src_file:
@@ -35,10 +32,16 @@ with open(resolved_path, "rb") as src_file:
     src_lines = src_file.readlines()
 
 ## Open a writeable stream to the destination file
-with open(os.path.join(output, domain), "wb") as destination_file:
+with open(os.path.join(args.sites_available, args.domain), "wb") as destination_file:
     ## Iterate src lines
     for line in src_lines:
         ## Get content with replaced domain
-        new = re.sub(r"\{\{DOMAIN\}\}", domain, line.decode())
+        with_domain = re.sub(r"\{\{DOMAIN\}\}", args.domain, line.decode())
+        ## Replace the hash
+        with_hash = re.sub(r"\{\{HASH\}\}", args.domain.split(".")[0], with_domain)
+
         ## Write the contents
-        destination_file.write(new.encode())
+        destination_file.write(with_hash.encode())
+
+## Make a sym link with the sites enabled folder
+os.symlink(os.path.join(args.sites_available, args.domain), os.path.join(args.sites_enabled, args.domain))
