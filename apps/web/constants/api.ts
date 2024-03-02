@@ -24,6 +24,6 @@ export const CMS_FETCH_OPTIONS = {
     authorization: `Bearer ${process.env.CMS_ACCESS_TOKEN}`,
   },
   next: {
-    revalidate: 3600, // 1 hour
+    revalidate: 0, // 1 hour
   },
 };
