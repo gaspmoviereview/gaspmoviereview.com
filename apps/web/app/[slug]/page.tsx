@@ -9,6 +9,8 @@ import { GenericStructuredData } from "../../components/Base/GenericStructuredDa
 import { ContactForm } from "../../components/ContactForm/ContactForm";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {

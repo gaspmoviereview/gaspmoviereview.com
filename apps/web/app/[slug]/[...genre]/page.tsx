@@ -8,6 +8,8 @@ import { getReviewsByGenre } from "../../../services/api/getReviewsByGenre";
 import { Pagination } from "../../../components/Pagination/Pagination";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
   searchParams,

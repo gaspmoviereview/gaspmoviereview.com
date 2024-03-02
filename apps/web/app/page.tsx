@@ -12,6 +12,8 @@ import { GenericStructuredData } from "../components/Base/GenericStructuredData/
 import { Metadata } from "next";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata(): Promise<Metadata> {
   const data = await getPageMetadataBySlug("home");
 

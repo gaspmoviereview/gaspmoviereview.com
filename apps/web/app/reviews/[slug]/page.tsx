@@ -12,6 +12,8 @@ import { BlogPosting, WithContext } from "schema-dts";
 import { APIReviewType } from "../../../types/api";
 import { notFound } from "next/navigation";
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {
