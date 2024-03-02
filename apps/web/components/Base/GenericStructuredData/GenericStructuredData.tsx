@@ -14,7 +14,7 @@ const GenericStructuredData: React.FC<GenericStructuredDataProps> = ({
     "@context": "https://schema.org",
     headline: page.title,
     description: page.description,
-    image: `${process.env.NEXT_PUBLIC_CMS_URI}${page.featuredImage.url}`,
+    image: `${process.env.NEXT_PUBLIC_CMS_URI}${page?.featuredImage?.url}`,
   };
   return (
     <script

@@ -39,7 +39,7 @@ const ReviewStructuredData: React.FC<{ post: APIReviewType }> = ({ post }) => {
         name: post.author.name,
       },
     ],
-    image: `${process.env.NEXT_PUBLIC_CMS_URI}${post.featuredImage.url}`,
+    image: `${process.env.NEXT_PUBLIC_CMS_URI}${post.featuredImage?.url}`,
     datePublished: post.publishedAt,
     dateModified: post.updatedAt,
   };
@@ -74,19 +74,19 @@ export default async function Page({
   return (
     <main>
       <Nav
-        links={siteInfo.navLinks}
-        logo={siteInfo.logoDark.formats.thumbnail}
+        links={siteInfo?.navLinks}
+        logo={siteInfo?.logoDark?.formats?.thumbnail}
       />
       <div className={styles["content-wrap"]}>
         <header className={styles["header"]}>
           <div className={styles["header-image"]}>
             <Image
-              src={`${process.env.NEXT_PUBLIC_CMS_URI}${review.featuredImage.url}`}
+              src={`${process.env.NEXT_PUBLIC_CMS_URI}${review?.featuredImage?.url}`}
               fill
               alt={
-                review.featuredImage.alternativeText ||
-                review.featuredImage.caption ||
-                review.featuredImage.name
+                review?.featuredImage?.alternativeText ||
+                review?.featuredImage?.caption ||
+                review?.featuredImage?.name
               }
             />
           </div>
@@ -98,7 +98,7 @@ export default async function Page({
                 <small>{`Last updated: ${updated}`}</small>
               ) : null}
             </div>
-            <span>{review.description}</span>
+            <span>{review?.description}</span>
           </div>
         </header>
         <div className={styles["author-wrapper"]}>
@@ -106,13 +106,13 @@ export default async function Page({
             <div className={styles["author-image-wrapper"]}>
               <Image
                 src={`${process.env.NEXT_PUBLIC_CMS_URI}${
-                  review.author.featuredImage.formats?.thumbnail?.url ||
-                  review.author.featuredImage.url
+                  review?.author?.featuredImage.formats?.thumbnail?.url ||
+                  review?.author?.featuredImage?.url
                 }`}
                 alt={
-                  review.author.featuredImage.alternativeText ||
-                  review.author.featuredImage.caption ||
-                  review.author.featuredImage.name
+                  review?.author?.featuredImage?.alternativeText ||
+                  review?.author?.featuredImage?.caption ||
+                  review?.author?.featuredImage?.name
                 }
                 fill
               />

@@ -23,7 +23,7 @@ export const generateMetadata = async (): Promise<Metadata> => {
     referrer: "origin-when-cross-origin",
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
     openGraph: {
-      images: siteInfo.socialShareImage.url,
+      images: siteInfo.socialShareImage?.url,
     },
   };
 };

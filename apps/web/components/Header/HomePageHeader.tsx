@@ -20,7 +20,7 @@ const HomePageHeader: React.FC<HomePageHeaderProps> = ({
     <header className={styles["home-header-wrapper"]}>
       <Image
         className={styles["background-image"]}
-        src={`${process.env.NEXT_PUBLIC_CMS_URI}${backgroundImage.url}`}
+        src={`${process.env.NEXT_PUBLIC_CMS_URI}${backgroundImage?.url}`}
         fill
         alt={
           backgroundImage.alternativeText ||
@@ -31,7 +31,7 @@ const HomePageHeader: React.FC<HomePageHeaderProps> = ({
       <div className={styles["header-content"]}>
         <div className={styles["logo-wrapper"]}>
           <Image
-            src={`${process.env.NEXT_PUBLIC_CMS_URI}${logoImage.url}`}
+            src={`${process.env.NEXT_PUBLIC_CMS_URI}${logoImage?.url}`}
             alt={
               logoImage.alternativeText || logoImage.caption || logoImage.name
             }
