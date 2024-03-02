@@ -23,7 +23,5 @@ export const CMS_FETCH_OPTIONS = {
   headers: {
     authorization: `Bearer ${process.env.CMS_ACCESS_TOKEN}`,
   },
-  next: {
-    revalidate: 30, // 1 hour
-  },
-};
+  cache: "no-store",
+} as RequestInit;
