@@ -1,6 +1,5 @@
 import { Nav } from "../../components/Nav/Nav";
 import { getLatestReviewCards } from "../../services/api/getLatestReviewCards";
-import { getPageBySlug } from "../../services/api/getPageBySlug";
 import { getPageMetadataBySlug } from "../../services/api/getPageMetadataBySlug";
 import { getSiteInfo } from "../../services/api/getSiteInfo";
 import styles from "./page.module.scss";
@@ -20,7 +19,6 @@ export async function generateMetadata() {
 }
 
 export default async function Page({
-  params,
   searchParams,
 }: {
   params: { slug: string };

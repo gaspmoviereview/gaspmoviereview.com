@@ -5,7 +5,7 @@ import React, { FormEvent, useState } from "react";
 
 type ContactFormProps = {};
 
-const ContactForm: React.FC<ContactFormProps> = ({}) => {
+const ContactForm: React.FC<ContactFormProps> = () => {
   const [errors, setErrors] = useState<Record<string, boolean>>({
     name: false,
     email: false,

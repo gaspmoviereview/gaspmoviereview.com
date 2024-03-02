@@ -1,7 +1,6 @@
 import React from "react";
-import { APIImageFormatType, APIImageType, APILinkType } from "../../types/api";
+import { APIImageType, APILinkType } from "../../types/api";
 import styles from "./HomePageHeader.module.scss";
-import Link from "next/link";
 import Image from "next/image";
 
 export type HomePageHeaderProps = {
@@ -15,8 +14,6 @@ export type HomePageHeaderProps = {
 const HomePageHeader: React.FC<HomePageHeaderProps> = ({
   backgroundImage,
   logoImage,
-  tagline,
-  cta,
   title,
 }) => {
   return (

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Content } from "../../../components/Base/Content/Content";
 import { GaspFactorCard } from "../../../components/Card/GaspFactorCard";
 import { Nav } from "../../../components/Nav/Nav";
-import { getPageBySlug } from "../../../services/api/getPageBySlug";
 import { getReviewBySlug } from "../../../services/api/getReviewBySlug";
 import { getSiteInfo } from "../../../services/api/getSiteInfo";
 import styles from "./page.module.scss";
