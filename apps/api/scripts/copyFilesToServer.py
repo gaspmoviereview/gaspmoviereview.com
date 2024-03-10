@@ -1,10 +1,7 @@
 import argparse
 import paramiko
-import time
 import tarfile
 import os
-import sys
-import subprocess
 
 ## Setup an arg parser
 arg_parser = argparse.ArgumentParser()
@@ -104,9 +101,10 @@ try:
         f"tar -xzf {deployment_path}/{args.hash}.tar.gz -C {deployment_path}",
         f"rm {deployment_path}/{args.hash}.tar.gz",
         f"cd {deployment_path}; python3 scripts/copyVirtualHost.py --domain {deployment_domain}",
-        f"cd {deployment_path}; yarn install --frozen-lockfile",
-        f"cd {deployment_path}; yarn build",
-        f"cd {deployment_path}; pm2 yarn start --name {args.hash} -- start"
+        f"cd {deployment_path}; python3 scripts/updateUpstream.py --hash {args.hash} --domain {deployment_domain}",
+        ##f"cd {deployment_path}; yarn install --frozen-lockfile",
+        ##f"cd {deployment_path}; yarn build",
+        ##f"cd {deployment_path}; pm2 yarn start --name {args.hash} -- start"
     ]
 
 

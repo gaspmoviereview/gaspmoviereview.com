@@ -1,8 +1,6 @@
 import argparse
 import re
 import os
-import sys
-
 
 ## Setup an arg parser
 arg_parser = argparse.ArgumentParser()
@@ -19,6 +17,7 @@ try:
     script_dir = os.path.dirname(os.path.abspath(__file__))
     relative = os.path.join("..","templates", "virtualHostFile")
     resolved_path = os.path.join(script_dir , relative)
+    absolute_path = os.path.abspath(resolved_path)
 except:
     ## Filepath is not defined so exit
     print("Could not load the virtual host template file")
@@ -27,7 +26,7 @@ except:
 print(f"Making virtual host file with the domain {args.domain}")
 
 ## Open the source file
-with open(resolved_path, "rb") as src_file:
+with open(absolute_path, "rb") as src_file:
     ## Get the lines    
     src_lines = src_file.readlines()
 
