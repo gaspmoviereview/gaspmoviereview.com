@@ -84,6 +84,7 @@ export default async function Page({
             <Image
               src={`${process.env.NEXT_PUBLIC_CMS_URI}${review?.featuredImage?.url}`}
               fill
+              className="object-cover"
               alt={
                 review?.featuredImage?.alternativeText ||
                 review?.featuredImage?.caption ||
@@ -154,12 +155,12 @@ export default async function Page({
             />
           </div>
           <Separator className="my-8" />
-          <div className={"flex justify-center gap-24 px-8"}>
-            <div className={"flex flex-col"}>
+          <div className={"flex flex-wrap gap-8 px-8 md:justify-center"}>
+            <div className={"flex flex-col max-w-[400px]"}>
               <h3>Triggers</h3>
               <p>{review.triggers}</p>
             </div>
-            <div className={"flex flex-col"}>
+            <div className={"flex flex-col max-w-[400px]"}>
               <h3>Genres</h3>
               <ul className={"flex gap-2"}>
                 {review.genres.map((genre) => (
