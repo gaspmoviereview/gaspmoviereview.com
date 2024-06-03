@@ -1,10 +1,9 @@
 "use server";
 import Link from "next/link";
 import { APIImageFormatType, APILinkType } from "../../types/api";
-import styles from "./Nav.module.scss";
 import Image from "next/image";
-import { NavButton } from "./NavButton";
-import { NavDrawer } from "./NavDrawer";
+import { NavDrawer } from "./nav-drawer";
+import { DesktopNavLinks } from "./desktop-nav-links";
 
 type NavProps = {
   style?: React.CSSProperties;
@@ -19,24 +18,33 @@ const Nav: React.FC<NavProps> = ({ testId, id, style, links, logo }) => {
     <div
       data-testid={testId}
       style={style}
-      className={styles["nav-wrapper"]}
+      className={
+        "px-4 fixed top-0 left-0 w-full h-nav items-center flex py-2 z-10 bg-white border-b shadow-md"
+      }
       id={id}
       role="navigation"
     >
-      <nav className={styles["nav-inner"]}>
-        <div className={styles["nav-logo"]}>
-          <Link href={"/"} title="Back to home">
+      <nav
+        className={
+          "flex justify-between w-full items-center grow-0 m-auto max-w-content"
+        }
+      >
+        <div className={"h-full max-w-[50px] flex items-center"}>
+          <Link
+            href={"/"}
+            title="Back to home"
+            className="max-w-full flex items-center"
+          >
             <Image
               style={{ objectFit: "contain" }}
               alt={logo?.name}
               src={`${process.env.NEXT_PUBLIC_CMS_URI}${logo?.url}`}
-              fill
+              width={100}
+              height={60}
             />
           </Link>
         </div>
-        <div className={styles["nav-triggers"]}>
-          <NavButton isOpen={true} />
-        </div>
+        <DesktopNavLinks links={links} />
         <NavDrawer links={links} logo={logo} />
       </nav>
     </div>

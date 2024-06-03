@@ -1,16 +1,17 @@
 import Image from "next/image";
-import { Content } from "../../../components/Base/Content/Content";
-import { GaspFactorCard } from "../../../components/Card/GaspFactorCard";
-import { Nav } from "../../../components/Nav/Nav";
+import { Content } from "../../../components/base/content/content";
+import { GaspFactorCard } from "../../../components/cards/gasp-factor-card";
+import { Nav } from "../../../components/nav/nav";
 import { getReviewBySlug } from "../../../services/api/getReviewBySlug";
 import { getSiteInfo } from "../../../services/api/getSiteInfo";
-import styles from "./page.module.scss";
 import Link from "next/link";
-import { Footer } from "../../../components/Footer/Footer";
+import { Footer } from "../../../components/footer/footer";
 import { getReviewMetadataBySlug } from "../../../services/api/getReviewMetadataBySlug";
 import { BlogPosting, WithContext } from "schema-dts";
 import { APIReviewType } from "../../../types/api";
 import { notFound } from "next/navigation";
+import { Separator } from "@repo/ui/components/separator";
+import { Badge } from "@repo/ui/components/badge";
 
 export const dynamic = "force-dynamic";
 
@@ -77,9 +78,9 @@ export default async function Page({
         links={siteInfo?.navLinks}
         logo={siteInfo?.logoDark?.formats?.thumbnail}
       />
-      <div className={styles["content-wrap"]}>
-        <header className={styles["header"]}>
-          <div className={styles["header-image"]}>
+      <div className={"max-w-content mx-auto"}>
+        <header className={"mt-nav lg:mt-nav-2x"}>
+          <div className={"relative min-h-[400px] lg:min-h-[600px] w-full"}>
             <Image
               src={`${process.env.NEXT_PUBLIC_CMS_URI}${review?.featuredImage?.url}`}
               fill
@@ -90,20 +91,30 @@ export default async function Page({
               }
             />
           </div>
-          <div className={styles["header-content"]}>
+          <div className={"grid max-w-header gap-4 mx-auto mt-16 p-8"}>
             <h1>{review.title}</h1>
-            <div className={styles["meta-published"]}>
+            <div className={"text-sm mx-auto"}>
               <small>Published: {published}</small>
               {published !== updated ? (
                 <small>{`Last updated: ${updated}`}</small>
               ) : null}
             </div>
-            <span>{review?.description}</span>
+            <span className="font-light italic">{review?.description}</span>
           </div>
         </header>
-        <div className={styles["author-wrapper"]}>
-          <div className={styles["author-left"]}>
-            <div className={styles["author-image-wrapper"]}>
+        <Separator
+          rounding={"lg"}
+          variant={"orange"}
+          className="max-w-[400px] mx-auto my-8"
+          size={"thick-horizontal"}
+        />
+        <div className={"flex justify-center"}>
+          <div className={"p-2"}>
+            <div
+              className={
+                "w-avatar h-avatar relative rounded-full overflow-hidden"
+              }
+            >
               <Image
                 src={`${process.env.NEXT_PUBLIC_CMS_URI}${
                   review?.author?.featuredImage.formats?.thumbnail?.url ||
@@ -118,39 +129,46 @@ export default async function Page({
               />
             </div>
           </div>
-          <div className={styles["author-right"]}>
-            <h4>{review.author.name}</h4>
-            <p>{review.author.tagline}</p>
+          <div className={"flex flex-col my-auto ml-2"}>
+            <h4 className="font-bold text-xl">{review.author.name}</h4>
+            <p className="font-light text-lg">{review.author.tagline}</p>
           </div>
         </div>
-        <div className={styles.content}>
+        <Separator
+          rounding={"lg"}
+          variant={"orange"}
+          className="max-w-[400px] mx-auto my-8"
+          size={"thick-horizontal"}
+        />
+        <div className="p-8">
           <Content content={review.content} />
         </div>
-        <div className={styles["footer-wrapper"]}>
-          <div className={styles["gasp-factor"]}>
+        <Separator />
+        <div className={"flex flex-col gap-4 justify-center"}>
+          <div className={"max-w-[350px] mx-auto mt-16"}>
             <GaspFactorCard
+              size={"lg"}
               bloodiness={review.gaspFactor.bloodiness}
               suspense={review.gaspFactor.suspense}
               scariness={review.gaspFactor.scariness}
-              stackVertical
             />
           </div>
-          <div className={styles["extra-details-wrapper"]}>
-            <div className={styles["triggers"]}>
+          <Separator className="my-8" />
+          <div className={"flex justify-center gap-24 px-8"}>
+            <div className={"flex flex-col"}>
               <h3>Triggers</h3>
               <p>{review.triggers}</p>
             </div>
-            <div className={styles["genres"]}>
+            <div className={"flex flex-col"}>
               <h3>Genres</h3>
-              <ul className={styles["genres-list"]}>
+              <ul className={"flex gap-2"}>
                 {review.genres.map((genre) => (
-                  <li
-                    key={`review-page-${genre.id}`}
-                    className={styles["genre-wrapper"]}
-                  >
-                    <Link href={`/genre/${genre.slug}`} title={genre.title}>
-                      {genre.title}
-                    </Link>
+                  <li key={`review-page-${genre.id}`}>
+                    <Badge variant={"yellow"}>
+                      <Link href={`/genre/${genre.slug}`} title={genre.title}>
+                        {genre.title}
+                      </Link>
+                    </Badge>
                   </li>
                 ))}
               </ul>

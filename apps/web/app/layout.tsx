@@ -1,11 +1,8 @@
-import "../styles//globals.scss";
+import "@repo/ui/globals.css";
+import "./fonts.css";
 import type { Metadata } from "next";
-import { Inria_Sans } from "next/font/google";
-import { Fonts } from "./fonts";
 import { getSiteInfo } from "../services/api/getSiteInfo";
 import { notFound } from "next/navigation";
-
-const inria = Inria_Sans({ subsets: ["latin"], weight: ["400", "300", "700"] });
 
 export const generateMetadata = async (): Promise<Metadata> => {
   const siteInfo = await getSiteInfo();
@@ -19,7 +16,6 @@ export const generateMetadata = async (): Promise<Metadata> => {
     },
     description: siteInfo.tagline,
     applicationName: siteInfo.name,
-    generator: "Next.js",
     referrer: "origin-when-cross-origin",
     metadataBase: new URL(`${process.env.NEXT_PUBLIC_URL}`),
     openGraph: {
@@ -35,10 +31,7 @@ export default function RootLayout({
 }): JSX.Element {
   return (
     <html lang="en">
-      <head>
-        <Fonts />
-      </head>
-      <body className={`${inria.className}`}>{children}</body>
+      <body>{children}</body>
     </html>
   );
 }

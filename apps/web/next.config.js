@@ -1,5 +1,13 @@
 /** @type {import('next').NextConfig} */
 module.exports = {
+  async rewrites() {
+    return [
+      {
+        source: "/sitemap.xml",
+        destination: "/api/v1/sitemap",
+      },
+    ];
+  },
   transpilePackages: ["@repo/ui"],
   images: {
     remotePatterns: [

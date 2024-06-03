@@ -1,7 +1,10 @@
 import React from "react";
-import { HomePageHeader, HomePageHeaderProps } from "./HomePageHeader";
-import { ReviewPageHeader, ReviewPageHeaderProps } from "./ReviewPageHeader";
-import { ContentPageHeader, ContentPageHeaderProps } from "./ContentPageHeader";
+import { HomePageHeader, HomePageHeaderProps } from "./home-page-header";
+import { ReviewPageHeader, ReviewPageHeaderProps } from "./review-page-header";
+import {
+  ContentPageHeader,
+  ContentPageHeaderProps,
+} from "./content-page-header";
 
 type HomeHeaderProps = {
   headerStyle: "HOME";

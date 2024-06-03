@@ -1,5 +1,4 @@
 import { BlocksContent, BlocksRenderer } from "@strapi/blocks-react-renderer";
-import styles from "./Content.module.scss";
 import React from "react";
 
 type ContentProps = {
@@ -8,7 +7,7 @@ type ContentProps = {
 
 const Content: React.FC<ContentProps> = ({ content }) => {
   return (
-    <div className={styles["content-wrapper"]}>
+    <div className="max-w-content text-xl font-light leading-normal">
       <BlocksRenderer content={content} />
     </div>
   );

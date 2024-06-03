@@ -1,12 +1,17 @@
-import { Nav } from "../../components/Nav/Nav";
+import { Nav } from "../../components/nav/nav";
 import { getLatestReviewCards } from "../../services/api/getLatestReviewCards";
 import { getPageMetadataBySlug } from "../../services/api/getPageMetadataBySlug";
 import { getSiteInfo } from "../../services/api/getSiteInfo";
-import styles from "./page.module.scss";
-import { ReviewCard } from "../../components/Card/ReviewCard";
-import { Footer } from "../../components/Footer/Footer";
-import { Pagination } from "../../components/Pagination/Pagination";
+import { ReviewCard } from "../../components/cards/review-card";
+import { Footer } from "../../components/footer/footer";
 import { notFound } from "next/navigation";
+import { Separator } from "@repo/ui/components/separator";
+import {
+  PaginationContent,
+  PaginationItem,
+  Pagination,
+} from "@repo/ui/components/pagination";
+import { AnchorLink } from "../../components/base";
 
 export const dynamic = "force-dynamic";
 
@@ -15,7 +20,6 @@ export async function generateMetadata() {
   if (!data) return notFound();
 
   return {
-    title: data?.title,
     description: data?.description,
   };
 }
@@ -46,20 +50,29 @@ export default async function Page({
         links={siteInfo.navLinks}
         logo={siteInfo.logoDark.formats.thumbnail}
       />
-      <header className={styles["header"]}>
-        <div className={styles["header-content"]}>
-          <h1>
-            Reviews <span>(Page {searchParams?.page || "1"})</span>
+      <header className="mt-nav py-12 px-6 max-w-header text-center mx-auto">
+        <div className={"grid gap-4 w-6/7 mx-auto"}>
+          <h1 className="font-bold">
+            Reviews{" "}
+            <span className="font-light block text-sm">
+              (Page {searchParams?.page || "1"})
+            </span>
           </h1>
-          <span>
+          <p className="font-light font-courier">
             Currently displaying posts{" "}
             {firstPostOnPage === 0 ? 1 : firstPostOnPage} to {lastPostOnPage}{" "}
             from all genres. There are a total of {meta.pagination.total} posts.
-          </span>
+          </p>
         </div>
       </header>
-      <div className={styles.content}>
-        <ul className={styles["latest-reviews-wrapper"]}>
+      <Separator
+        className="max-w-[400px] mx-auto w-4/5"
+        variant={"orange"}
+        size={"thick-horizontal"}
+        rounding={"lg"}
+      />
+      <div className="py-16 max-w-content mx-auto">
+        <ul className="grid sm:grid-cols-2 md:grid-cols-3 justify-center gap-8">
           {reviews.map((review) => (
             <li key={`plp-review-card-${review.id}`}>
               <ReviewCard review={review} />
@@ -67,18 +80,38 @@ export default async function Page({
           ))}
         </ul>
       </div>
-      <Pagination
-        links={Array(meta.pagination.pageCount)
-          .fill(null)
-          .map((_, i) => ({
-            href: `/reviews?page=${1 + i}`,
-            isActive: !(
-              Number(searchParams?.page) === 1 + i ||
-              (!searchParams?.page && i === 0)
-            ),
-            label: `${i + 1}`,
-          }))}
-      />
+      {meta.pagination.pageCount > 1 ? (
+        <Pagination>
+          <PaginationContent>
+            <PaginationItem>
+              <AnchorLink
+                href={`/reviews?page=${meta.pagination.page - 1}`}
+                title={`Go to page ${meta.pagination.page - 1}`}
+                className={
+                  meta.pagination.page === 1
+                    ? "pointer-events-none touch-none opacity-50"
+                    : "cursor-pointer"
+                }
+              >
+                Previous
+              </AnchorLink>
+            </PaginationItem>
+            <PaginationItem>
+              <AnchorLink
+                href={`/reviews/?page=${meta.pagination.page + 1}`}
+                title={`Go to page ${meta.pagination.page + 1}`}
+                className={
+                  meta.pagination.page === meta.pagination.pageCount
+                    ? "pointer-events-none touch-none opacity-50"
+                    : "cursor-pointer"
+                }
+              >
+                Next
+              </AnchorLink>
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      ) : null}
       <Footer columns={siteInfo.footerLinkColumns} />
     </main>
   );
