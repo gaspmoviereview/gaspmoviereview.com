@@ -1,7 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import styles from "./NavDrawer.module.scss";
-import Link from "next/link";
 import Image from "next/image";
 import { APIImageFormatType, APILinkType } from "../../types/api";
 import { NavButton } from "./nav-button";

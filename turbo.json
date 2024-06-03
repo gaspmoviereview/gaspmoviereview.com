@@ -10,7 +10,8 @@
     "MAILER_USER",
     "MAILER_PASS",
     "MAILER_RECEIVER",
-    "NEXT_PUBLIC_URL"
+    "NEXT_PUBLIC_URL",
+    "BASE_URI"
   ],
   "pipeline": {
     "build": {

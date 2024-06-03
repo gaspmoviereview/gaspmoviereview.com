@@ -1,4 +1,3 @@
-"use server";
 import Link from "next/link";
 import { APIImageFormatType, APILinkType } from "../../types/api";
 import Image from "next/image";

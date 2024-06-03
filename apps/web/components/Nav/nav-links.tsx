@@ -1,7 +1,6 @@
 "use client";
 
 import { APILinkType } from "../../types/api";
-import { useScreenSize } from "@repo/react-utils";
 import { cn } from "@repo/ui/lib/utils";
 import { AnchorLink } from "../base/anchor-link/anchor-link";
 
@@ -10,9 +9,9 @@ export function NavLinks({
   linkOnClickCallback,
 }: {
   links: APILinkType[];
+  // eslint-disable-next-line
   linkOnClickCallback?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
 }) {
-  const { width } = useScreenSize();
   return (
     <ul className={cn("flex gap-4 flex-col sm:flex-row")}>
       {links.map((link) => (
