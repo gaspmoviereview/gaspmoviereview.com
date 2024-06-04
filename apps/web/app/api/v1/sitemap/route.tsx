@@ -34,7 +34,7 @@ const generateSiteMap = (
           .map(({ slug }) => {
             return `
           <url>
-              <loc>${`${process.env.BASE_URI}/reviews/${slug}`}</loc>
+              <loc>${`${process.env.BASE_URI}/genre/${slug}`}</loc>
           </url>
         `;
           })
