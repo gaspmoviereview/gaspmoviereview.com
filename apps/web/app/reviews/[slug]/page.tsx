@@ -84,6 +84,7 @@ export default async function Page({
             <Image
               src={`${process.env.NEXT_PUBLIC_CMS_URI}${review?.featuredImage?.url}`}
               fill
+              quality={95}
               className="object-cover"
               alt={
                 review?.featuredImage?.alternativeText ||

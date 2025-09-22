@@ -26,6 +26,7 @@ export const ReviewCard: React.FC<{ review: APIReviewCardType }> = ({
         <div className={"relative h-[200px] object-cover"}>
           <Image
             src={`${process.env.NEXT_PUBLIC_CMS_URI}${review?.featuredImage?.formats?.small?.url}`}
+            quality={95}
             alt={
               review?.featuredImage?.alternativeText ||
               review?.featuredImage?.caption ||
