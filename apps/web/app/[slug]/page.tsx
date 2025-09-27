@@ -8,6 +8,7 @@ import { GenericStructuredData } from "../../components/base/generic-structured-
 import { ContactForm } from "../../components/contact-form/contact-form";
 import { notFound } from "next/navigation";
 import { Separator } from "@repo/ui/components/separator";
+import Image from "next/image";
 
 export const dynamic = "force-dynamic";
 
@@ -41,10 +42,27 @@ export default async function Page({
         links={siteInfo.navLinks}
         logo={siteInfo.logoDark.formats.thumbnail}
       />
-      <header className={"max-w-header mt-nav py-16 px-8 mx-auto"}>
-        <div className={"flex flex-col gap-8 text-center"}>
+      <header className={"mt-nav lg:mt-nav"}>
+        {pageData.featuredImage?.url ? (
+          <div className={"relative min-h-[400px] lg:min-h-[600px] w-full"}>
+            <Image
+              src={`${process.env.NEXT_PUBLIC_CMS_URI}${pageData?.featuredImage?.url}`}
+              fill
+              quality={95}
+              className="object-cover"
+              alt={
+                pageData.featuredImage?.alternativeText ||
+                pageData.featuredImage?.caption ||
+                pageData.featuredImage?.name
+              }
+            />
+          </div>
+        ) : null}
+        <div className={"grid max-w-header gap-4 mx-auto mt-16 p-8"}>
           <h1>{pageData.title}</h1>
-          <span>{pageData.description}</span>
+          <span className="font-light text-center italic">
+            {pageData.description}
+          </span>
         </div>
       </header>
       <Separator
@@ -53,11 +71,11 @@ export default async function Page({
         size={"thick-horizontal"}
         rounding={"lg"}
       />
-      <div className={"px-8 max-w-content mx-auto"}>
+      <div className={"px-8 max-w-content mx-auto min-h-[calc(100vh_/_2)]"}>
         <Content content={pageData.content} />
       </div>
       {pageData.isContact ? (
-        <div className={"max-w-content mx-auto flex grow w-full"}>
+        <div className={"max-w-content"}>
           <ContactForm />
         </div>
       ) : null}
