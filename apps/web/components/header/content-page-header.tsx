@@ -2,6 +2,7 @@ import React from "react";
 
 export type ContentPageHeaderProps = {
   className?: string;
+  backgroundImage?: string;
   style?: React.CSSProperties;
   id?: string;
   testId?: string;
@@ -10,6 +11,7 @@ export type ContentPageHeaderProps = {
 const ContentPageHeader: React.FC<ContentPageHeaderProps> = ({
   testId,
   className,
+  backgroundImage,
   id,
   style,
 }) => {
@@ -20,6 +22,7 @@ const ContentPageHeader: React.FC<ContentPageHeaderProps> = ({
 
 ContentPageHeader.defaultProps = {
   className: undefined,
+  backgroundImage: undefined,
   style: undefined,
   id: undefined,
   testId: undefined,
