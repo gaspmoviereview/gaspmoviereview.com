@@ -1,4 +1,5 @@
 "use client";
+import { cn } from "@repo/ui/lib/utils";
 import { validateField } from "../../services/form/validateField";
 import styles from "./ContactForm.module.scss";
 import React, { FormEvent, useState } from "react";
@@ -107,7 +108,10 @@ const ContactForm: React.FC<ContactFormProps> = () => {
   };
 
   return (
-    <div className={styles["contact-wrapper"]} data-loading={isLoading}>
+    <div
+      className={cn(styles["contact-wrapper"], "mx-auto")}
+      data-loading={isLoading}
+    >
       <div className={styles["contact-header"]}>
         <h3>Get in touch</h3>
         <p>
