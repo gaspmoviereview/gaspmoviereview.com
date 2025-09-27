@@ -53,11 +53,11 @@ export default async function Page({
         size={"thick-horizontal"}
         rounding={"lg"}
       />
-      <div className={"px-8 max-w-content mx-auto min-h-[calc(100vh_/_2)]"}>
+      <div className={"px-8 max-w-content mx-auto"}>
         <Content content={pageData.content} />
       </div>
       {pageData.isContact ? (
-        <div className={"max-w-content"}>
+        <div className={"max-w-content mx-auto flex grow w-full"}>
           <ContactForm />
         </div>
       ) : null}
