@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import Image from "next/image";
 import { APIImageFormatType, APILinkType } from "../../types/api";
@@ -10,8 +11,6 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { NavLinks } from "./nav-links";
-import { useScreenSize } from "@repo/react-utils";
-import { MEDIUM_BREAKPOINT } from "../../constants/screen-size";
 import { AnchorLink } from "../base/anchor-link/anchor-link";
 import { Separator } from "@repo/ui/components/separator";
 
@@ -22,8 +21,8 @@ type NavDrawerProps = {
 
 const NavDrawer: React.FC<NavDrawerProps> = ({ logo, links }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const { width } = useScreenSize();
-  return width <= MEDIUM_BREAKPOINT ? (
+
+  return (
     <Sheet open={isOpen} onOpenChange={setIsOpen}>
       <SheetTrigger asChild>
         <NavButton setIsOpen={setIsOpen} />
@@ -53,7 +52,7 @@ const NavDrawer: React.FC<NavDrawerProps> = ({ logo, links }) => {
         </div>
       </SheetContent>
     </Sheet>
-  ) : null;
+  );
 };
 
 export { NavDrawer };
