@@ -12,6 +12,7 @@ import { APIReviewType } from "../../../types/api";
 import { notFound } from "next/navigation";
 import { Separator } from "@repo/ui/components/separator";
 import { Badge } from "@repo/ui/components/badge";
+import { ReviewCard } from "../../../components/cards";
 
 export const dynamic = "force-dynamic";
 
@@ -107,7 +108,7 @@ export default async function Page({
         <Separator
           rounding={"lg"}
           variant={"orange"}
-          className="max-w-[400px] mx-auto my-8"
+          className="max-w-[400px] mx-auto mt-8 mb-4"
           size={"thick-horizontal"}
         />
         <div className={"flex justify-center"}>
@@ -131,15 +132,15 @@ export default async function Page({
               />
             </div>
           </div>
-          <div className={"flex flex-col my-auto ml-2"}>
-            <h4 className="font-bold text-xl">{review.author.name}</h4>
-            <p className="font-light text-lg">{review.author.tagline}</p>
+          <div className={"flex flex-col my-auto ml-2 gap-0 justify-center"}>
+            <h4 className="font-bold text-xl mb-0">{review.author.name}</h4>
+            <p className="font-light text-lg mt-0">{review.author.tagline}</p>
           </div>
         </div>
         <Separator
           rounding={"lg"}
           variant={"orange"}
-          className="max-w-[400px] mx-auto my-8"
+          className="max-w-[400px] mx-auto mt-4"
           size={"thick-horizontal"}
         />
         <div className="p-8">
@@ -155,6 +156,7 @@ export default async function Page({
               scariness={review.gaspFactor.scariness}
             />
           </div>
+
           <Separator className="my-8" />
           <div className={"flex flex-wrap gap-8 px-8 md:justify-center"}>
             <div className={"flex flex-col max-w-[400px]"}>
@@ -174,6 +176,19 @@ export default async function Page({
                   </li>
                 ))}
               </ul>
+            </div>
+          </div>
+          <Separator className="my-8" />
+          <div className="max-w-full p-8">
+            <h4 className="font-bold mb-8 text-3xl">Related Reviews</h4>
+            <div className="flex gap-4 overflow-auto max-w-full">
+              {review.relatedReviews.map((review) => (
+                <ReviewCard
+                  key={`related-${review.id}`}
+                  review={review}
+                  className="w-120 shrink-0"
+                />
+              ))}
             </div>
           </div>
         </div>

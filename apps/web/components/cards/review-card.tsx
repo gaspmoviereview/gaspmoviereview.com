@@ -10,13 +10,18 @@ import {
   CardTitle,
 } from "@repo/ui/components/card";
 import { Separator } from "@repo/ui/components/separator";
+import { cn } from "@repo/ui/lib/utils";
 
-export const ReviewCard: React.FC<{ review: APIReviewCardType }> = ({
-  review,
-}) => {
+export const ReviewCard: React.FC<{
+  review: APIReviewCardType;
+  className?: string;
+}> = ({ review, className }) => {
   return (
     <Card
-      className={"max-w-[350px] border rounded-sm overflow-hidden shadow-lg"}
+      className={cn(
+        "max-w-[350px] border rounded-sm overflow-hidden shadow-lg",
+        className
+      )}
     >
       <AnchorLink
         href={`/reviews/${review.slug}`}
