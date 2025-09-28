@@ -87,6 +87,16 @@ export type APIGenreType = {
   locale: string;
 };
 
+export type APIAuthorType = {
+  id: number;
+  name: string;
+  slug: string;
+  tagline: string;
+  content: BlocksContent;
+  reviews: APIReviewCardType[];
+  featuredImage: APIImageType;
+};
+
 export type APIReviewType = {
   id: number;
   title: string;
