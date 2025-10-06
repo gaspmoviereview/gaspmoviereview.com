@@ -12,6 +12,8 @@ import {
   Pagination,
 } from "@repo/ui/components/pagination";
 import { AnchorLink } from "../../components/base";
+import Image from "next/image";
+import { getPageBySlug } from "../../services/api/getPageBySlug";
 
 export const dynamic = "force-dynamic";
 
@@ -31,6 +33,8 @@ export default async function Page({
   searchParams?: { page: number };
 }): Promise<JSX.Element> {
   const page = searchParams?.page ? Number(searchParams?.page) : 1;
+  const pageData = await getPageBySlug("reviews");
+
   const siteInfo = await getSiteInfo();
 
   const { data: reviews, meta } = await getLatestReviewCards(page);
@@ -52,6 +56,21 @@ export default async function Page({
       />
       <header className="mt-nav py-12 px-6 max-w-header text-center mx-auto">
         <div className={"grid gap-4 w-6/7 mx-auto"}>
+          {pageData?.featuredImage?.url ? (
+            <div className={"relative min-h-[400px] w-full"}>
+              <Image
+                src={`${process.env.NEXT_PUBLIC_CMS_URI}${pageData?.featuredImage?.url}`}
+                fill
+                quality={95}
+                className="object-cover"
+                alt={
+                  pageData?.featuredImage?.alternativeText ||
+                  pageData?.featuredImage?.caption ||
+                  pageData?.featuredImage?.name
+                }
+              />
+            </div>
+          ) : null}
           <h1 className="font-bold">
             Reviews{" "}
             <span className="font-light block text-sm">
