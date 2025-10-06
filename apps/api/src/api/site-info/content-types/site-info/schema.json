@@ -112,6 +112,17 @@
       },
       "component": "general.footer-links",
       "required": true
+    },
+    "socialLinks": {
+      "displayName": "Social Links",
+      "type": "component",
+      "repeatable": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "component": "general.social-link"
     }
   }
 }
