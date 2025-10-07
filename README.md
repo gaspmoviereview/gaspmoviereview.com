@@ -1,9 +1,3 @@
-# Turborepo starter
-
-This is an official starter Turborepo.
-
-## Using this example
-
 Run the following command:
 
 ```sh
@@ -18,7 +12,7 @@ This Turborepo includes the following packages/apps:
 
 - `docs`: a [Next.js](https://nextjs.org/) app
 - `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
+- `@repo/ui`: astub React component library shared by both `web` and `docs` applications
 - `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
@@ -63,7 +57,7 @@ npx turbo login
 
 This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+Next, you can link your Turborepo to your Remote cache by running the following command from the root of your Turborepo:
 
 ```
 npx turbo link
