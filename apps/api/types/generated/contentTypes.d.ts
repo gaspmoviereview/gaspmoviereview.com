@@ -1203,6 +1203,12 @@ export interface ApiSiteInfoSiteInfo extends Schema.SingleType {
           localized: true;
         };
       }>;
+    socialLinks: Attribute.Component<'general.social-link', true> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

@@ -51,6 +51,7 @@ import {
   RectangleHorizontal,
   RectangleVertical,
   RotateCcw,
+  Rss,
   Search,
   Settings,
   Smile,
@@ -66,6 +67,11 @@ import {
   Ungroup,
   WrapText,
   X,
+  Mail,
+  Linkedin,
+  Facebook,
+  Instagram,
+  Youtube,
 } from "lucide-react";
 
 import type { LucideIcon } from "lucide-react";
@@ -280,6 +286,12 @@ export const Icons = {
   moon: Moon,
   sun: SunMedium,
   twitter: Twitter,
+  rss: Rss,
+  mail: Mail,
+  linkedin: Linkedin,
+  facebook: Facebook,
+  instagram: Instagram,
+  youtube: Youtube,
 };
 
 export const iconVariants = cva("", {
