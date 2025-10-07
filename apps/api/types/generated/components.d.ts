@@ -25,6 +25,32 @@ export interface GeneralLink extends Schema.Component {
   };
 }
 
+export interface GeneralSocialLink extends Schema.Component {
+  collectionName: 'components_general_social_links';
+  info: {
+    displayName: 'Social Link';
+    icon: 'share';
+    description: 'Social media platform link';
+  };
+  attributes: {
+    platform: Attribute.Enumeration<
+      [
+        'twitter',
+        'facebook',
+        'instagram',
+        'linkedin',
+        'youtube',
+        'github',
+        'rss',
+        'email'
+      ]
+    > &
+      Attribute.Required;
+    url: Attribute.String & Attribute.Required;
+    label: Attribute.String;
+  };
+}
+
 export interface ReviewGaspFactor extends Schema.Component {
   collectionName: 'components_review_gasp_factors';
   info: {
@@ -61,6 +87,7 @@ declare module '@strapi/types' {
     export interface Components {
       'general.footer-links': GeneralFooterLinks;
       'general.link': GeneralLink;
+      'general.social-link': GeneralSocialLink;
       'review.gasp-factor': ReviewGaspFactor;
     }
   }

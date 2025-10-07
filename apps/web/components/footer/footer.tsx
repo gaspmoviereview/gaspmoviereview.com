@@ -1,6 +1,7 @@
 import React from "react";
 import { APIFooterColumnType } from "../../types/api";
 import { AnchorLink } from "../base/anchor-link/anchor-link";
+import { SocialFollow } from "../social-follow";
 
 type FooterProps = {
   columns: APIFooterColumnType[];
@@ -9,6 +10,22 @@ type FooterProps = {
 const Footer: React.FC<FooterProps> = ({ columns }) => {
   return (
     <footer className={"bg-primary px-8 pt-12 pb-4 mt-32"}>
+      <div className="flex flex-col items-center justify-center gap-4 mb-12">
+        <div className="text-white">
+          <h3>Follow me</h3>
+        </div>
+        <div className="flex justify-center gap-4">
+          <SocialFollow
+            links={[
+              {
+                platform: "instagram",
+                url: "https://www.instagram.com/gaspmoviereview",
+              },
+            ]}
+            variant="outline"
+          />
+        </div>
+      </div>
       <div
         className={
           "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-content mx-auto"

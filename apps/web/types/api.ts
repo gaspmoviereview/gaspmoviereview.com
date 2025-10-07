@@ -41,6 +41,13 @@ export type APIFooterColumnType = {
   links: APILinkType[];
 };
 
+export type APISocialLinkType = {
+  id: number;
+  platform: "twitter" | "facebook" | "instagram" | "linkedin" | "youtube" | "github" | "rss" | "email";
+  url: string;
+  label?: string;
+};
+
 export type APISiteInfoType = {
   id: number;
   name: string;
@@ -51,6 +58,7 @@ export type APISiteInfoType = {
   socialShareImage: APIImageType;
   footerLinkColumns: APIFooterColumnType[];
   navLinks: APILinkType[];
+  socialLinks?: APISocialLinkType[];
 };
 
 export type APIPageType = {
