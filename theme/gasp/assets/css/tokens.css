@@ -1,0 +1,48 @@
+/* Design tokens, copied verbatim from "Gasp Movie Review Design System/tokens/" (colors, spacing, typography).
+   Fonts are self-hosted via theme.json; icons are inline SVGs (inc/icons.php). */
+:root{
+--ink-950:#05080d;--ink-900:#0a1019;--ink-850:#0f1724;--ink-800:#152033;--ink-700:#1d2b42;
+--gasp-navy:#0d3a67;--gasp-navy-400:#3f7fc4;--gasp-navy-glow:rgba(63,127,196,.35);
+--gasp-red:#ff4433;--gasp-red-deep:#c8241a;--gasp-red-glow:rgba(255,68,51,.45);
+--bone-50:#f4efea;--bone-300:#b9b3ad;--bone-500:#858079;
+--line-1:rgba(255,255,255,.08);--line-2:rgba(255,255,255,.16);
+--fg-1:var(--bone-50);--fg-2:var(--bone-300);--fg-3:var(--bone-500);--fg-accent:var(--gasp-red);--fg-on-accent:#ffffff;
+--surface-page:var(--ink-950);--surface-raised:var(--ink-900);--surface-card:var(--ink-900);--surface-card-hover:var(--ink-850);--surface-panel:var(--ink-850);--surface-chrome:rgba(5,8,13,.72);--surface-footer:var(--ink-950);
+--border-hairline:var(--line-1);--border-strong:var(--line-2);--border-accent:var(--gasp-red);
+--scrim-bottom:linear-gradient(180deg,rgba(5,8,13,0) 35%,rgba(5,8,13,.85) 80%,#05080d 100%);/* @kind color */
+--scrim-card:linear-gradient(180deg,rgba(10,16,25,0) 50%,rgba(10,16,25,.9) 100%);/* @kind color */
+--text-body:var(--fg-1);--text-heading:var(--fg-1);--text-stat:var(--fg-accent);--link:var(--fg-1);--link-hover:var(--gasp-red);
+}
+
+:root{
+--space-4:4px;--space-8:8px;--space-12:12px;--space-16:16px;--space-20:20px;--space-24:24px;--space-32:32px;--space-48:48px;--space-64:64px;--space-96:96px;--space-128:128px;
+--gutter:clamp(20px,4vw,48px);/* @kind spacing */--container:1240px;--measure:680px;--header-h:64px;
+--radius-xs:6px;--radius-sm:10px;--radius-card:14px;--radius-panel:20px;--radius-pill:999px;
+--rule-hairline:1px;/* @kind spacing */
+--shadow-card:0 1px 0 rgba(255,255,255,.04) inset,0 20px 40px -20px rgba(0,0,0,.8);
+--shadow-glow-red:0 0 0 1px rgba(255,68,51,.5),0 0 24px rgba(255,68,51,.45);
+--shadow-glow-navy:0 0 80px rgba(63,127,196,.25);
+--blur-chrome:saturate(140%) blur(14px);/* @kind other */
+--ease-out:cubic-bezier(.2,.7,.2,1);/* @kind other */--dur-fast:160ms;/* @kind other */--dur-base:320ms;/* @kind other */--dur-slow:700ms;/* @kind other */
+}
+
+:root{
+--font-display:'Instrument Serif',Georgia,serif;--font-sans:'Geist',system-ui,sans-serif;--font-mono:'Geist Mono',ui-monospace,monospace;
+--fw-light:300;/* @kind font */--fw-regular:400;/* @kind font */--fw-medium:500;/* @kind font */--fw-semibold:600;/* @kind font */--fw-bold:700;/* @kind font */
+--fs-11:11px;--fs-12:12px;--fs-13:13px;--fs-15:15px;--fs-17:17px;--fs-20:20px;--fs-28:28px;--fs-40:40px;--fs-56:56px;--fs-88:88px;--fs-120:120px;
+--lh-tight:1;/* @kind font */--lh-display:1.02;/* @kind font */--lh-snug:1.3;/* @kind font */--lh-body:1.55;/* @kind font */--lh-read:1.75;/* @kind font */
+--ls-display:-.01em;/* @kind font */--ls-eyebrow:.14em;/* @kind font */--ls-mono:.04em;/* @kind font */
+--type-hero:400 clamp(56px,9vw,120px)/var(--lh-display) var(--font-display);
+--type-page-title:400 clamp(44px,6vw,88px)/var(--lh-display) var(--font-display);
+--type-section-title:400 var(--fs-40)/1.05 var(--font-display);
+--type-card-title:400 var(--fs-28)/1.08 var(--font-display);
+--type-standfirst:italic 400 clamp(22px,2.4vw,28px)/1.35 var(--font-display);
+--type-body:400 var(--fs-15)/var(--lh-body) var(--font-sans);
+--type-read:300 var(--fs-17)/var(--lh-read) var(--font-sans);
+--type-ui:500 var(--fs-13)/1 var(--font-sans);
+--type-eyebrow:500 var(--fs-11)/1 var(--font-mono);
+--type-meta:400 var(--fs-12)/1.4 var(--font-mono);
+--type-stat:500 var(--fs-13)/1 var(--font-mono);
+--type-score:400 var(--fs-120)/.9 var(--font-display);
+}
+

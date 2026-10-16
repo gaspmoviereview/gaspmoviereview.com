@@ -1,0 +1,16 @@
+/*
+ * Block editor: make writing a review look like reading one. theme.json supplies the fonts,
+ * colours and block type; this adds the reading measure and the "Title (Year)" title style.
+ * WordPress scopes this file to the editor canvas automatically.
+ */
+
+body { background: var(--ink-950); color: var(--fg-1); }
+
+.editor-post-title__input,
+.editor-post-title { font-family: var(--font-display) !important; font-weight: 400; font-size: clamp(44px, 6vw, 72px); line-height: 1; letter-spacing: -.01em; color: var(--fg-1); }
+
+a { color: var(--fg-1); text-decoration: underline; text-decoration-color: var(--line-2); text-underline-offset: 3px; }
+strong { font-weight: 500; color: var(--fg-1); }
+li::marker { color: var(--gasp-red); }
+figure img { border-radius: 14px; }
+figcaption { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--fg-3); text-align: center; }
