@@ -1,0 +1,14 @@
+/*
+Theme Name:        Gasp
+Theme URI:         https://www.gaspmoviereview.com
+Description:       Gasp Movie Review v2, "cinematic dark". Built from the Gasp Movie Review Design System. Requires the Gasp Reviews plugin.
+Version:           1.0.1
+Requires at least: 6.6
+Requires PHP:      8.1
+Author:            Paul Singh
+Author URI:        https://paulsingh.dev
+License:           GPL-2.0-or-later
+Text Domain:       gasp
+*/
+
+/* Styles live in assets/css/. This file only carries the theme header. */

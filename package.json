@@ -1,21 +1,20 @@
 {
-  "name": "gaspmoviewreviews.com",
+  "name": "gaspmoviereview-wordpress",
   "private": true,
+  "type": "module",
   "scripts": {
-    "build": "turbo build",
-    "dev": "turbo dev",
-    "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "wp:start": "wp-env start",
+    "wp:stop": "wp-env stop",
+    "wp:destroy": "wp-env destroy",
+    "wp:cli": "wp-env run cli wp",
+    "migrate": "node migrate/migrate.js",
+    "package": "rm -rf dist && mkdir dist && (cd plugin && zip -qr ../dist/gasp-reviews.zip gasp-reviews -x '*.DS_Store') && (cd theme && zip -qr ../dist/gasp.zip gasp -x '*.DS_Store') && ls -lh dist",
+    "test": "node --test migrate/*.test.js"
   },
   "devDependencies": {
-    "prettier": "^3.2.4",
-    "turbo": "1.10.4"
+    "@wordpress/env": "^10.0.0"
   },
   "engines": {
-    "node": ">=18"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ]
+    "node": ">=20"
+  }
 }
